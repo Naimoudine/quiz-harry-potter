@@ -1,14 +1,14 @@
-@import url(./style.css);
+@import url(./style-guide.css);
 
-*{
-    padding:0;
-    margin:0;
+* {
+    padding: 0;
+    margin: 0;
 }
 
 .container-score {
     background-color: #131416;
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     flex-grow: 0;
@@ -16,7 +16,7 @@
     height: 100%;
     width: 100%;
     position: relative;
-} 
+}
 
 div {
     display: flex;
@@ -26,7 +26,7 @@ div {
     width: 100%;
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 800px) {
     .container-score {
         padding: 1.5rem;
     }
@@ -42,24 +42,24 @@ h1 {
 
 h2 {
     font-size: 4rem;
-    color : #d3a625;
-    text-align: center; 
+    color: #d3a625;
+    text-align: center;
     margin-bottom: 3rem;
     font-family: "Harry Potter";
-    font-weight:bold; 
+    font-weight: bold;
 }
 
 p {
     margin-bottom: 3rem;
-    color:#d3a625;
+    color: #d3a625;
     font-size: 1rem;
 }
 
-img{
+img {
     width: 100%;
     max-width: 350px;
-    height:150px;
-    margin-bottom:2rem;
+    height: 150px;
+    margin-bottom: 2rem;
     text-align: center;
     border-radius: 15px;
 }
@@ -68,13 +68,9 @@ img{
     width: 100%;
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 800px) {
     .homebutton {
         width: fit-content;
-        align-self:flex-end;
+        align-self: flex-end;
     }
 }
-
-
-
-
