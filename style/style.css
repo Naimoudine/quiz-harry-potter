@@ -33,17 +33,58 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--dark-brackground);
+  height: 100dvh;
+  width: 100dvw;
 }
 
 h1 {
   color: var(--gold);
   font-family: var(--title-font);
-  height: 16px;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 64px;
 }
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 6rem;
+  }
+}
+
 p {
   color: var(--subTitle-color);
+  text-align: center;
+  margin-bottom: 64px;
+  margin-top: 0;
+  font-size: 1.125rem;
+  max-width: 85%;
+}
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100dvh;
+  width: 100dvw;
+  padding: 0 2rem;
 }
 
 .homebutton {
   background-color: var(--red-griffon);
+  color: var(--gold);
+  text-align: center;
+  width: fit-content;
+  border-radius: 0.5rem;
+  padding: 1rem 4rem;
+  font-family: var(--title-font);
+  font-size: 1.5rem;
+  border: none;
 }
