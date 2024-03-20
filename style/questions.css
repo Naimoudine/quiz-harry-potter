@@ -1,61 +1,59 @@
 @import url(./style.css);
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 .container {
-    height: 100dvh;
-    width: 100dvw;
-    margin: 0;
-    padding: 0%;
+  height: 100dvh;
+  width: 100dvw;
+  margin: 0;
+  padding: 0%;
 }
 header {
-    text-align: left;
+  text-align: left;
 }
 main {
-    p 
-{
+  p {
     font-family: "Harry Potter";
     src: url("../assets/fonts/HarryP.woff") format("woff");
-    font-size: 1.50rem;
+    font-size: 1.5rem;
     color: gold;
     text-align: center;
-}
+  }
 }
 img {
-    height: 9.375rem;
-    width: 18.75rem;
-    margin-left: 8%;
-    margin-right: 8%;
+  height: 9.375rem;
+  width: 18.75rem;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 button {
-    display: grid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: .625rem;
-    height: 4.25rem;
-    width: 80%;
+  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.625rem;
+  height: 4.25rem;
+  width: 80%;
 }
-.Gryffondor{
-    background-color: var(--red-griffon);
+.Gryffondor {
+  background-color: var(--red-griffon);
 }
 .Serpentard {
-    background-color: var(--green);
+  background-color: var(--green);
 }
-.Serdaigle{
-    background-color: var(--blue);
+.Serdaigle {
+  background-color: var(--blue);
 }
 .Pouffsouffle {
-    background-color: var(--yellow);
+  background-color: var(--yellow);
 }
 ul {
-    list-style: none;
-    
+  list-style: none;
 }
 
 button li {
-    text-align: center;
-    color: white;
-    font-size: 1.25rem;
+  text-align: center;
+  color: white;
+  font-size: 1.25rem;
 }
