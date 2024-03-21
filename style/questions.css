@@ -80,7 +80,7 @@ main h1 {
 }
 
 .answer {
-    margin: 0.25rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     width: 100%;
     border: none;
@@ -93,8 +93,8 @@ main h1 {
 .correct {
     border: 4px solid var(--green-answer);
 }
-.false {
-    border: 4px solid var(----red-answer);
+.wrong {
+    border: 4px solid var(--red-answer);
 }
 
 .Gryffondor {

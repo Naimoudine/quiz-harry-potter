@@ -40,18 +40,3 @@ h1 {
     width: 100dvw;
     padding: 0 2rem;
 }
-
-.homebutton {
-    background-color: var(--red-griffon);
-    color: var(--gold);
-    text-align: center;
-    width: fit-content;
-    border-radius: 0.5rem;
-    padding: 1rem 4rem;
-    font-family: var(--title-font);
-    font-size: 1.5rem;
-    border: none;
-    &:hover {
-        background-color: var(--red-hover);
-    }
-}
