@@ -1,59 +1,64 @@
 @font-face {
-  font-family: "Harry Potter";
-  src: url("../assets/fonts/HarryP.woff") format("woff");
+    font-family: "Harry Potter";
+    src: url("../assets/fonts/HarryP.woff") format("woff");
 }
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Young+Serif&display=swap");
 
 :root {
-  font-size: 16px;
-  font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
 
-  --gold: #d3a625;
-  --red-griffon: #740001;
-  --green: #1a472a;
-  --blue: #0e1a40;
-  --yellow: #ecb939;
+    --gold: #d3a625;
+    --red-griffon: #740001;
+    --green: #1a472a;
+    --blue: #0e1a40;
+    --yellow: #ecb939;
 
-  --green-answer: #006c2c;
-  --red-answer: #b80600;
+    --green-answer: #006c2c;
+    --red-answer: #b80600;
 
-  --red-hover: #ff1818;
-  --dark-brackground: #131416;
+    --red-hover: #ff1818;
+    --dark-brackground: #131416;
 
-  --title-font: "Harry Potter";
+    --title-font: "Harry Potter";
 
-  --subTitle-color: #aaaaaa;
+    --subTitle-color: #aaaaaa;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--dark-brackground);
-  height: 100dvh;
-  width: 100dvw;
-  cursor: url(../assets/Images/Souris.png), pointer;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-brackground);
+    height: 100dvh;
+    width: 100dvw;
+    cursor: url(../assets/Images/Souris.png), pointer;
+    position: relative;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
 }
 
 .homebutton {
-  background-color: var(--red-griffon);
-  color: var(--gold);
-  text-align: center;
-  width: fit-content;
-  border-radius: 0.5rem;
-  padding: 1rem 4rem;
-  font-family: var(--title-font);
-  font-size: 1.5rem;
-  border: none;
-  &:hover {
-    background-color: var(--red-hover);
-  }
+    background-color: var(--red-griffon);
+    color: var(--gold);
+    text-align: center;
+    width: fit-content;
+    border-radius: 0.5rem;
+    padding: 1rem 4rem;
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    border: none;
+    &:hover {
+        background-color: var(--red-hover);
+    }
 }
