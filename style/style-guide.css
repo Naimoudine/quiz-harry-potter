@@ -48,7 +48,7 @@ button {
     cursor: pointer;
 }
 
-.homebutton {
+.button {
     background-color: var(--red-griffon);
     color: var(--gold);
     text-align: center;

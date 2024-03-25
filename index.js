@@ -1,20 +1,24 @@
-// [] gérer le button resultat et affichage du résultat
 // revoir l'ui et le faire passer dans le w3c
+// gérer le changement d'ui et intégré les questions
 
 import { db } from './db/db.js';
 
 let answersBtn = document.querySelectorAll('.answer');
 let nextBtn = document.querySelector('.next');
+let body = document.querySelector('body');
+let stylesheet = document.querySelector('link');
 
 let currentAnwsers;
 let currentQuestionIndex = 17;
 let correctAnswersCount = 0;
 
-function initPage() {
+
+function initQuestionPage() {
     handleProgress(db, currentQuestionIndex);
     displayAnswers(displayQuestion(db, currentQuestionIndex));
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
+    stylesheet.href = "./style/questions.css";
 }
 
 function handleProgress(arr, index) {
@@ -36,10 +40,13 @@ function handleProgress(arr, index) {
 function displayQuestion(arr, index) {
     let currentQuestion = document.querySelector("h1");
     //boucle sur l'array des question afin d'insérer le texte de la question actuelle dans le h1
-    for(let i = 0; i < arr.length; i++) {
-        currentQuestion.innerText = arr[index].question.text;
-        return arr[index];
+    if(currentQuestionIndex <= 19) {
+        for(let i = 0; i < arr.length; i++) {
+            currentQuestion.innerText = arr[index].question.text;
+            return arr[index];
+        }
     }
+    
 }
 
 /**
@@ -63,7 +70,9 @@ function randomAnswers(arr) {
  * @param {*} obj L'object qui contient la question actuelle et ses réponses;
  */
 function displayAnswers(obj) {
-    currentAnwsers = obj.answers;
+    if(currentQuestionIndex <= 19) {
+        currentAnwsers = obj.answers;
+    }
 
     let randomizedAnswers = randomAnswers(currentAnwsers);
     //boucle sur les réponses et mes buttons pour insérer dans chaque buttons une réponses
@@ -127,13 +136,33 @@ function handleAnswerClick() {
                 nextBtn.innerText = `Resultat`;
             }
 
-            console.log(currentQuestionIndex)
             removeDisable(nextBtn);
         })
     })
 }
 
-nextBtn.addEventListener('click', () => {
+function initResultPage(data) {
+    stylesheet.href = "./style/result.css"
+    body.innerHTML = `<div class="container-score">
+    <div>
+        <h1>Ton score</h1>
+        <h2>${correctAnswersCount}/${data.length}</h2>
+        <p>
+            Bravo, tu es un véritable sorcier ! <br />
+            L'univers de Harry Potter ne semble pas avoir de secrets pour toi.
+            <br />
+            Vérifie ton courrier, ta lettre d'admission ne saurait tarder.
+        </p>
+        <img
+            src="./assets/Images/result.gif"
+            alt="10 points pour gryffondor! Public en joie "
+        />
+        </div>
+        <a class="button" href="./index.html">Menu</a>
+    </div>`
+}
+
+nextBtn.addEventListener('click', (e) => {
     currentQuestionIndex++;
     handleProgress(db, currentQuestionIndex);
     displayAnswers(displayQuestion(db, currentQuestionIndex));
@@ -144,11 +173,10 @@ nextBtn.addEventListener('click', () => {
         btn.classList.remove("wrong");
     });
 
-    console.log(nextBtn.innerText)
-
-    if(nextBtn.innerText === "Resultat") {
-        location.href = "./result.html"
+    if(e.currentTarget.innerText.toUpperCase( ) === "RESULTAT") {
+        initResultPage(db);
     }
+
 });
 
-initPage();
+initQuestionPage();
