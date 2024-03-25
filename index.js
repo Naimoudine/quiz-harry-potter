@@ -120,7 +120,6 @@ function handleAnswerClick() {
         btn.addEventListener('click', () => {
             let currentAnwser = btn.innerText;
             let correctAnswer = currentAnwsers.filter(answer => answer.result)[0];
-            console.log(correctAnswer);
             
             if(currentAnwser !== correctAnswer.text) {
                 btn.classList.add("wrong");
@@ -172,6 +171,8 @@ nextBtn.addEventListener('click', (e) => {
         btn.classList.remove("correct");
         btn.classList.remove("wrong");
     });
+
+    disableBtn(nextBtn);
 
     if(e.currentTarget.innerText.toUpperCase( ) === "RESULTAT") {
         initResultPage(db);
