@@ -9,8 +9,8 @@ let body = document.querySelector('body');
 let stylesheet = document.querySelector('link');
 
 let currentAnwsers;
-let currentQuestionIndex = 17;
-let correctAnswersCount = 0;
+let currentQuestionIndex = 1;
+let correctAnswersCount = 17;
 
 
 function initQuestionPage() {
@@ -29,6 +29,10 @@ function handleProgress(arr, index) {
         let progressBar = document.querySelector('.upper-bar');
         progressBar.style.width = `${(index + 1) / arr.length * 100}%`;
     }
+}
+
+function handleLayout() {
+
 }
 
 /**
@@ -57,7 +61,7 @@ function displayQuestion(arr, index) {
 function randomAnswers(arr) {
     //Boucle sur l'array de notre réponse en partant de la fin pour que ce soit bien random
     for(let i = arr.length - 1; i > 0; i--) {
-        //Crée un index  aléatoire entre 0 et 5
+        //Crée un index  aléatoire entre 0 et 4
         const randomIndex = Math.floor(Math.random() * (i + 1));
         //crée un array temporaire et y assigne un autre array avec la méthode destructive afin d'y mélanger les éléments.
         [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
@@ -120,10 +124,12 @@ function handleAnswerClick() {
         btn.addEventListener('click', () => {
             let currentAnwser = btn.innerText;
             let correctAnswer = currentAnwsers.filter(answer => answer.result)[0];
+            console.log(btn)
             
             if(currentAnwser !== correctAnswer.text) {
                 btn.classList.add("wrong");
                 getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].classList.add("correct");
+                getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].style.pointerEvents = "none";
                 getSiblings(btn).filter(sibling => sibling.innerText !== correctAnswer.text).forEach(btn => disableBtn(btn));
             } else {
                 btn.classList.add("correct");
@@ -140,12 +146,12 @@ function handleAnswerClick() {
     })
 }
 
-function initResultPage(data) {
+function initResultPage(data, counter) {
     stylesheet.href = "./style/result.css"
     body.innerHTML = `<div class="container-score">
     <div>
         <h1>Ton score</h1>
-        <h2>${correctAnswersCount}/${data.length}</h2>
+        <h2>${counter}/${data.length}</h2>
         <p>
             Bravo, tu es un véritable sorcier ! <br />
             L'univers de Harry Potter ne semble pas avoir de secrets pour toi.
@@ -174,8 +180,8 @@ nextBtn.addEventListener('click', (e) => {
 
     disableBtn(nextBtn);
 
-    if(e.currentTarget.innerText.toUpperCase( ) === "RESULTAT") {
-        initResultPage(db);
+    if(e.currentTarget.innerText.toUpperCase() === "RESULTAT") {
+        initResultPage(db, correctAnswersCount);
     }
 
 });

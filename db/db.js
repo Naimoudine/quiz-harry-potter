@@ -1,4 +1,4 @@
-export let db = [
+export let db = [ 
     {
         question: {
             id: 1,
@@ -29,7 +29,8 @@ export let db = [
         question: {
             id: 3,
             type: "text/img",
-            text: "Combien y a-t-il d'horcruxes ?"
+            text: "Combien y a-t-il d'horcruxes ?",
+            img: "../assets/Images/question3.jpg"
         }, 
         answers: [
             {text: "7", "result": true},
