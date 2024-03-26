@@ -199,7 +199,7 @@ export let db = [
         question: {
             id: 16,
             type: "text/img",
-            text: "Comment s'appelle le père de Luna Lovegood ?"
+            text: "Comment s'appelle la femme de Harry Potter à la fin de la série"
         }, 
         answers: [
             {text: "Ginny", "result": true},
@@ -238,7 +238,7 @@ export let db = [
         question: {
             id: 19,
             type: "text",
-            text: "De quoi famille Durley a-t-elle le plus peur ?"
+            text: "J'espère que vous êtes contents de vous. On aurait pu se faire tuer, ou pire, être"
         }, 
         answers: [
             {text: "renvoyés!", "result": true},
