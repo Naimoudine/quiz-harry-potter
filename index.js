@@ -11,14 +11,12 @@ let currentAnwsers;
 let currentQuestionIndex = 0;
 let correctAnswersCount = 17;
 
-
-function initQuestionPage() {
+function initQuiz() {
     handleProgress(db, currentQuestionIndex);
+    handleLayout(displayQuestion(db, currentQuestionIndex));
     displayAnswers(displayQuestion(db, currentQuestionIndex));
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
-    stylesheet.href = "./style/questions.css";
-    handleLayout(displayQuestion(db, currentQuestionIndex));
 }
 
 function handleProgress(arr, index) {
@@ -99,6 +97,7 @@ function displayAnswers(obj) {
     }
 }
 
+//permet de récupère les autres éléments enfants
 function getSiblings(currentElement) {
     //Pour récupérer les éléments frères
     let siblings = [];
@@ -134,7 +133,6 @@ function removeDisable(btn) {
 function handleAnswerClick() {
     answersBtn.forEach(btn => {
         btn.addEventListener('click', () => {
-            console.log("clicked");
             let currentAnwser = btn.innerText;
             let correctAnswer = currentAnwsers.filter(answer => answer.result)[0];
             console.log(btn)
@@ -161,7 +159,7 @@ function handleAnswerClick() {
     })
 }
 
-function initResultPage(data, counter) {
+function showResult(data, counter) {
     stylesheet.href = "./style/result.css"
     body.innerHTML = `<div class="container-score">
     <div>
@@ -197,9 +195,9 @@ nextBtn.addEventListener('click', (e) => {
     disableBtn(nextBtn);
 
     if(e.currentTarget.innerText.toUpperCase() === "RESULTAT") {
-        initResultPage(db, correctAnswersCount);
+        showResult(db, correctAnswersCount);
     }
 
 });
 
-initQuestionPage();
+initQuiz();
