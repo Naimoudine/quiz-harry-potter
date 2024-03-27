@@ -13,7 +13,7 @@ let answersBtn = document.querySelectorAll(".answer");
 let nextBtn = document.querySelector(".next");
 
 let currentAnwsers;
-let currentQuestionIndex = 9;
+let currentQuestionIndex = 0;
 let correctAnswersCount = 1;
 
 function initQuiz() {
@@ -28,6 +28,22 @@ function initQuiz() {
   stylesheet.href = "./style/quiz.css";
   homeContainer.style.display = "none";
 }
+
+/**
+ *
+ * @param {Array} arr L'array avec les réponses à la questions actuelle
+ * @returns un array qui a ses éléments qui changent d'index constamment de manière au hasard
+ */
+function randomize(arr) {
+    //Boucle sur l'array de notre réponse en partant de la fin pour que ce soit bien random
+    for (let i = arr.length - 1; i > 0; i--) {
+      //Crée un index  aléatoire entre 0 et 4
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      //crée un array temporaire et y assigne un autre array avec la méthode destructive afin d'y mélanger les éléments.
+      [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+    }
+    return arr;
+  }
 
 function limitQuestion(db) {
   let questions = [];
@@ -64,21 +80,6 @@ function displayQuestion(arr, index) {
   }
 }
 
-/**
- *
- * @param {Array} arr L'array avec les réponses à la questions actuelle
- * @returns un array qui a ses éléments qui changent d'index constamment de manière au hasard
- */
-function randomAnswers(arr) {
-  //Boucle sur l'array de notre réponse en partant de la fin pour que ce soit bien random
-  for (let i = arr.length - 1; i > 0; i--) {
-    //Crée un index  aléatoire entre 0 et 4
-    const randomIndex = Math.floor(Math.random() * (i + 1));
-    //crée un array temporaire et y assigne un autre array avec la méthode destructive afin d'y mélanger les éléments.
-    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
-  }
-  return arr;
-}
 
 function displayImage(obj, index) {
   console.log(obj);
@@ -96,7 +97,7 @@ function displayAnswers(obj) {
     currentAnwsers = obj.answers;
   }
 
-  let randomizedAnswers = randomAnswers(currentAnwsers);
+  let randomizedAnswers = randomize(currentAnwsers);
 
   //boucle sur les réponses et mes buttons pour insérer dans chaque buttons une réponses
   for (let i = 0; i < answersBtn.length; i++) {

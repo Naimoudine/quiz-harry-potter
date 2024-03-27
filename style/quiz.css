@@ -41,9 +41,12 @@ header {
 
 .exit {
     font-family: "Harry Potter";
-    color: gold;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -56,11 +59,13 @@ header {
 
 .next {
     font-family: "Harry Potter";
-    color: gold;
-    background-color: transparent;
+    color: var(--);
+    background-color: #fff;
     border: none;
-    font-size: 1.25rem;
+    border-radius: 5px;
+    font-size: 1.125rem;
     text-transform: uppercase;
+    padding: 0.5rem;
 }
 
 @media screen and (min-width: 800px) {
