@@ -12,13 +12,12 @@ let answersBtn = document.querySelectorAll('.answer');
 let nextBtn = document.querySelector('.next');
 
 let currentAnwsers;
-let currentQuestionIndex = 19;
+let currentQuestionIndex = 0;
 let correctAnswersCount = 19;
 
 
 function initQuiz() {
     handleProgress(db, currentQuestionIndex);
-    handleLayout(displayQuestion(db, currentQuestionIndex));
     displayAnswers(displayQuestion(db, currentQuestionIndex));
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
@@ -33,19 +32,6 @@ function handleProgress(arr, index) {
     
         let progressBar = document.querySelector('.upper-bar');
         progressBar.style.width = `${(index + 1) / arr.length * 100}%`;
-    }
-}
-
-function handleLayout(obj) {
-    let image = document.querySelector(".img");
-    
-    if(currentQuestionIndex <= 19) {
-        if(obj.question.type === "images" || obj.question.type === "text") {
-            image.style.display = "none";
-        } else {
-            image.style.display = "block";
-            image.style.background = `url(${obj.question.img}) center/cover`
-        }
     }
 }
 
@@ -186,7 +172,6 @@ nextBtn.addEventListener('click', (e) => {
     currentQuestionIndex++;
     handleProgress(db, currentQuestionIndex);
     displayAnswers(displayQuestion(db, currentQuestionIndex));
-    handleLayout(displayQuestion(db, currentQuestionIndex));
 
     answersBtn.forEach(btn => {
         removeDisable(btn);
