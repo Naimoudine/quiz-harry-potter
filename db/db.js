@@ -197,7 +197,7 @@ export let db = [
     {
         question: {
             id: 16,
-            text: "Comment s'appelle le père de Luna Lovegood ?",
+            text: "Comment s'appelle la femme de Harry Potter à la fin du film ?",
             img: "../assets/Images/question16.png"
         }, 
         answers: [
@@ -236,7 +236,7 @@ export let db = [
     {
         question: {
             id: 19,
-            text: "De quoi famille Durley a-t-elle le plus peur ?",
+            text: "J’espère que vous êtes contents de vous. On aurait pu se faire tuer, ou pire, être...",
             img: "../assets/Images/question19.webp"
         }, 
         answers: [
@@ -250,7 +250,7 @@ export let db = [
         question: {
             id:20,
             text: "Quel est le deuxième prénom de Harry Potter ?",
-            img: "../assets/Images/question.jpg"
+            img: "../assets/Images/question20.jpg"
         }, 
         answers: [
             {text: "James", "result": true},

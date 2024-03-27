@@ -12,18 +12,17 @@ let image = document.querySelector(".img-container");
 let answersBtn = document.querySelectorAll(".answer");
 let nextBtn = document.querySelector(".next");
 
-let currentAnwsers;
+let currentQuestion, currentAnwsers, limitedQuestions;
 let currentQuestionIndex = 0;
-let correctAnswersCount = 1;
+let correctAnswersCount = 0;
 
 function initQuiz() {
-  handleProgress(limitQuestion(db), currentQuestionIndex);
-  displayImage(
-    displayQuestion(limitQuestion(db), currentQuestionIndex),
-    currentQuestionIndex
-  );
-  displayAnswers(displayQuestion(limitQuestion(db), currentQuestionIndex));
-  handleAnswerClick(currentAnwsers);
+  limitQuestion(db);
+  handleProgress(limitedQuestions, currentQuestionIndex);
+  displayQuestion(limitedQuestions, currentQuestionIndex);
+  displayImage(currentQuestion, currentQuestionIndex);
+  displayAnswers(currentQuestion);
+  handleAnswerClick();
   disableBtn(nextBtn);
   stylesheet.href = "./style/quiz.css";
   homeContainer.style.display = "none";
@@ -46,15 +45,15 @@ function randomize(arr) {
   }
 
 function limitQuestion(db) {
-  let questions = [];
-  for (let i = 0; i < 10; i++) {
+  let questions = [];;
+  for (let i = db.length - 1; i > 9; i--) {
     questions.push(db[i]);
   }
-  return questions;
+  limitedQuestions = questions;
 }
 
 function handleProgress(arr, index) {
-  if (currentQuestionIndex <= arr.length - 1) {
+  if (index <= arr.length - 1) {
     let progress = document.querySelector("header p");
     progress.innerText = `Question ${index + 1}/${arr.length}`;
 
@@ -65,24 +64,23 @@ function handleProgress(arr, index) {
 
 /**
  *
- * @param {Array} arr L'array qui contient toutes nos questions
+ * @param {Array} db L'array qui contient toutes nos questions
  * @param {Number} index L'index de la question actuelle
  * @returns
  */
-function displayQuestion(arr, index) {
-  let currentQuestion = document.querySelector(".mainQuestion");
+function displayQuestion(db, index) {
+  let questionEl = document.querySelector(".mainQuestion");
   //boucle sur l'array des question afin d'insérer le texte de la question actuelle dans le h1
-  if (currentQuestionIndex <= arr.length - 1) {
-    for (let i = 0; i < arr.length; i++) {
-      currentQuestion.innerText = arr[index].question.text;
-      return arr[index];
+  if (index <= db.length - 1) {
+    for (let i = 0; i < db.length; i++) {
+      questionEl.innerText = db[index].question.text;
+      currentQuestion = db[index];
     }
   }
 }
 
 
 function displayImage(obj, index) {
-  console.log(obj);
   if (index <= 9) {
     image.style.background = `url("${obj.question.img}") center/cover no-repeat`;
   }
@@ -145,7 +143,6 @@ function handleAnswerClick() {
     btn.addEventListener("click", () => {
       let currentAnwser = btn.innerText;
       let correctAnswer = currentAnwsers.filter((answer) => answer.result)[0];
-      console.log(btn);
 
       if (currentAnwser) {
         if (currentAnwser !== correctAnswer.text) {
@@ -163,6 +160,7 @@ function handleAnswerClick() {
           btn.classList.add("correct");
           getSiblings(btn).forEach((btn) => disableBtn(btn));
           correctAnswersCount++;
+          console.log(correctAnswersCount);
         }
       }
 
@@ -191,9 +189,9 @@ function showResult(data, count) {
 
   if (count < 4) {
     msg.innerHTML = `Un moldu qui participe à un quiz de sorcier ?  <br />
-            Merci d’avoir participé à ce quiz.
-            <br />
-            Oubliettes!`;
+    Merci d’avoir participé quand même...
+    <br />
+    Mais oubliettes!`;
     img.src = "../assets/Images/result-2.gif";
 
   } else if (count >= 4 && count < 7) {
@@ -224,12 +222,10 @@ playBtn.addEventListener("click", () => {
 
 nextBtn.addEventListener("click", (e) => {
   currentQuestionIndex++;
-  handleProgress(limitQuestion(db), currentQuestionIndex);
-  displayImage(
-    displayQuestion(limitQuestion(db), currentQuestionIndex),
-    currentQuestionIndex
-  );
-  displayAnswers(displayQuestion(limitQuestion(db), currentQuestionIndex));
+  handleProgress(limitedQuestions, currentQuestionIndex);
+  displayQuestion(limitedQuestions, currentQuestionIndex);
+  displayImage(currentQuestion, currentQuestionIndex);
+  displayAnswers(currentQuestion);
 
   answersBtn.forEach((btn) => {
     removeDisable(btn);
@@ -240,6 +236,6 @@ nextBtn.addEventListener("click", (e) => {
   disableBtn(nextBtn);
 
   if (e.currentTarget.innerText.toUpperCase() === "RESULTAT") {
-    showResult(limitQuestion(db), correctAnswersCount);
+    showResult(limitedQuestions, correctAnswersCount);
   }
 });
