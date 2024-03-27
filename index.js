@@ -8,13 +8,13 @@ let homeContainer = document.querySelector(".container-home");
 let quizContainer = document.querySelector(".container-quiz");
 let resultContainer = document.querySelector(".container-score");
 let playBtn = document.querySelector(".playButton");
-let image = document.querySelector("img");
+let image = document.querySelector(".img-container");
 let answersBtn = document.querySelectorAll(".answer");
 let nextBtn = document.querySelector(".next");
 
 let currentAnwsers;
-let currentQuestionIndex = 0;
-let correctAnswersCount = 0;
+let currentQuestionIndex = 9;
+let correctAnswersCount = 1;
 
 function initQuiz() {
   handleProgress(limitQuestion(db), currentQuestionIndex);
@@ -83,7 +83,7 @@ function randomAnswers(arr) {
 function displayImage(obj, index) {
   console.log(obj);
   if (index <= 9) {
-    image.src = obj.question.img;
+    image.style.background = `url("${obj.question.img}") center/cover no-repeat`;
   }
 }
 
@@ -101,12 +101,6 @@ function displayAnswers(obj) {
   //boucle sur les réponses et mes buttons pour insérer dans chaque buttons une réponses
   for (let i = 0; i < answersBtn.length; i++) {
     for (let j = 0; j < randomizedAnswers.length; j++) {
-      // if(obj.question.type ==="images") {
-      //     answersBtn[i].style.background = `url("${randomizedAnswers[i].img}") center/cover no-repeat`;
-      //     answersBtn[i].classList.add('answerBtn');
-      // } else {
-      //     answersBtn[i].innerText = randomizedAnswers[i].text;
-      // }
       answersBtn[i].innerText = randomizedAnswers[i].text;
     }
   }
@@ -183,8 +177,10 @@ function handleAnswerClick() {
 function showResult(data, count) {
   let score = document.querySelector(".final-score");
   let msg = document.querySelector(".final-msg");
+  let img = document.querySelector(".final-img");
+  let btn = document.querySelector(".resultBtn");
 
-  console.log(msg, count);
+  console.log(img);
 
   stylesheet.href = "./style/result.css";
   resultContainer.style.display = "flex";
@@ -197,17 +193,26 @@ function showResult(data, count) {
             Merci d’avoir participé à ce quiz.
             <br />
             Oubliettes!`;
+    img.src = "../assets/Images/result-2.gif";
+
   } else if (count >= 4 && count < 7) {
     msg.innerHTML = `Bravo, tu as suffisamment de connaissances en magie pour identifier des détraqueurs mais tu es dépourvu(e) de pouvoir  car tu es un cracmol.<br>
             Merci d’avoir participé à ce quiz.
             `;
+    img.src = "../assets/Images/result-1.gif";
+    
   } else {
     msg.innerHTML = `Félicitations, tu es un véritable sorcier !<br>
             L’univers Harry Potter ne semble pas avoir de secrets pour toi.
             Vérifie tes courriers, ta lettre d’admission ne saurait tarder.<br>
             Merci d’avoir participé à ce quiz.  
             `;
+    img.src = "../assets/Images/result.gif";
   }
+
+  btn.addEventListener('click', () => {
+    location.reload();
+  })
 }
 
 playBtn.addEventListener("click", () => {

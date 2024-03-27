@@ -41,7 +41,7 @@ export let db = [
     {
         question: {
             id: 4,
-            text: "Comment s'appelle l'araignée de Hagid?",
+            text: "Comment s'appelle l'araignée de Hagrid?",
             img: "../assets/Images/question4.jpg"
         }, 
         answers: [
@@ -54,7 +54,7 @@ export let db = [
     {
         question: {
             id: 5,
-            text: "Quel est le nom de Hagid?",
+            text: "Quel est le nom de Hagrid?",
             img: "../assets/Images/question5.jpg"
         }, 
         answers: [
