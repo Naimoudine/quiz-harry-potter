@@ -1,5 +1,4 @@
 // revoir l'ui et le faire passer dans le w3c
-// gérer le changement d'ui et intégré les questions
 
 import { db } from './db/db.js';
 
@@ -9,7 +8,7 @@ let body = document.querySelector('body');
 let stylesheet = document.querySelector('link');
 
 let currentAnwsers;
-let currentQuestionIndex = 1;
+let currentQuestionIndex = 0;
 let correctAnswersCount = 17;
 
 
@@ -19,6 +18,7 @@ function initQuestionPage() {
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
     stylesheet.href = "./style/questions.css";
+    handleLayout(displayQuestion(db, currentQuestionIndex));
 }
 
 function handleProgress(arr, index) {
@@ -31,8 +31,15 @@ function handleProgress(arr, index) {
     }
 }
 
-function handleLayout() {
-
+function handleLayout(obj) {
+    let image = document.querySelector(".img");
+    console.log(obj.question.type)
+    if(obj.question.type === "images" || obj.question.type === "text") {
+        image.style.display = "none";
+    } else {
+        image.style.display = "block";
+        image.style.background = `url(${obj.question.img}) center/cover`
+    }
 }
 
 /**
@@ -74,14 +81,19 @@ function randomAnswers(arr) {
  * @param {*} obj L'object qui contient la question actuelle et ses réponses;
  */
 function displayAnswers(obj) {
-    if(currentQuestionIndex <= 19) {
-        currentAnwsers = obj.answers;
-    }
+    currentAnwsers = obj.answers;
 
     let randomizedAnswers = randomAnswers(currentAnwsers);
+
     //boucle sur les réponses et mes buttons pour insérer dans chaque buttons une réponses
     for(let i = 0; i < answersBtn.length; i++) {
         for(let j = 0; j < randomizedAnswers.length; j++) {
+            // if(obj.question.type ==="images") {
+            //     answersBtn[i].style.background = `url("${randomizedAnswers[i].img}") center/cover no-repeat`;
+            //     answersBtn[i].classList.add('answerBtn');
+            // } else {
+            //     answersBtn[i].innerText = randomizedAnswers[i].text;
+            // }
             answersBtn[i].innerText = randomizedAnswers[i].text;
         }
     }
@@ -122,19 +134,22 @@ function removeDisable(btn) {
 function handleAnswerClick() {
     answersBtn.forEach(btn => {
         btn.addEventListener('click', () => {
+            console.log("clicked");
             let currentAnwser = btn.innerText;
             let correctAnswer = currentAnwsers.filter(answer => answer.result)[0];
             console.log(btn)
-            
-            if(currentAnwser !== correctAnswer.text) {
-                btn.classList.add("wrong");
-                getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].classList.add("correct");
-                getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].style.pointerEvents = "none";
-                getSiblings(btn).filter(sibling => sibling.innerText !== correctAnswer.text).forEach(btn => disableBtn(btn));
-            } else {
-                btn.classList.add("correct");
-                getSiblings(btn).forEach(btn => disableBtn(btn));
-                correctAnswersCount++;
+
+            if(currentAnwser) {
+                if(currentAnwser !== correctAnswer.text) {
+                    btn.classList.add("wrong");
+                    getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].classList.add("correct");
+                    getSiblings(btn).filter(sibling => sibling.innerText === correctAnswer.text)[0].setAttribute("disabled", "");
+                    getSiblings(btn).filter(sibling => sibling.innerText !== correctAnswer.text).forEach(btn => disableBtn(btn));
+                } else {
+                    btn.classList.add("correct");
+                    getSiblings(btn).forEach(btn => disableBtn(btn));
+                    correctAnswersCount++;
+                }
             }
 
             if(currentQuestionIndex === 19) {
@@ -171,6 +186,7 @@ nextBtn.addEventListener('click', (e) => {
     currentQuestionIndex++;
     handleProgress(db, currentQuestionIndex);
     displayAnswers(displayQuestion(db, currentQuestionIndex));
+    handleLayout(displayQuestion(db, currentQuestionIndex));
 
     answersBtn.forEach(btn => {
         removeDisable(btn);

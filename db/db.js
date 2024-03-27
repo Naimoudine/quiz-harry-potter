@@ -10,6 +10,10 @@ export let db = [
             {text: "Crabbe et Goyle", "result": false},
             {text: "Drago et Severus", "result": false},
             {text: "Luna et Neville", "result": false}
+            // {img: "../assets/Images/question1-hermione-ron.jpg", "result": true},
+            // {img: "../assets/Images/question1-drago-severus.jpg", "result": false},
+            // {img: "../assets/Images/question1-CrabbandGoyle.jpg", "result": false},
+            // {img: "../assets/Images/question1-neville-luna.webp", "result": false}
         ]
     },
     {
@@ -199,7 +203,7 @@ export let db = [
         question: {
             id: 16,
             type: "text/img",
-            text: "Comment s'appelle la femme de Harry Potter à la fin de la série"
+            text: "Comment s'appelle le père de Luna Lovegood ?"
         }, 
         answers: [
             {text: "Ginny", "result": true},
@@ -238,7 +242,7 @@ export let db = [
         question: {
             id: 19,
             type: "text",
-            text: "J'espère que vous êtes contents de vous. On aurait pu se faire tuer, ou pire, être"
+            text: "De quoi famille Durley a-t-elle le plus peur ?"
         }, 
         answers: [
             {text: "renvoyés!", "result": true},

@@ -1,4 +1,4 @@
-@import url(./style-guide.css);
+@import url(./boilerplate.css);
 
 h1 {
     color: var(--gold);
