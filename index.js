@@ -8,25 +8,35 @@ let homeContainer = document.querySelector('.container-home');
 let quizContainer = document.querySelector('.container-quiz');
 let resultContainer = document.querySelector('.container-score');
 let playBtn = document.querySelector(".playButton");
+let image = document.querySelector('img')
 let answersBtn = document.querySelectorAll('.answer');
 let nextBtn = document.querySelector('.next');
 
 let currentAnwsers;
 let currentQuestionIndex = 0;
-let correctAnswersCount = 19;
+let correctAnswersCount = 0;
 
 
 function initQuiz() {
-    handleProgress(db, currentQuestionIndex);
-    displayAnswers(displayQuestion(db, currentQuestionIndex));
+    handleProgress(limitQuestion(db), currentQuestionIndex);
+    displayImage(displayQuestion(limitQuestion(db), currentQuestionIndex), currentQuestionIndex);
+    displayAnswers(displayQuestion(limitQuestion(db), currentQuestionIndex));
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
     stylesheet.href = "./style/quiz.css";
     homeContainer.style.display = "none";
 }
 
+function limitQuestion(db) {
+    let questions = [];
+    for(let i = 0; i < 10; i++) {
+        questions.push(db[i]);
+    }
+    return questions;
+}
+
 function handleProgress(arr, index) {
-    if(currentQuestionIndex <= 19) {
+    if(currentQuestionIndex <= arr.length - 1) {
         let progress = document.querySelector("header p");
         progress.innerText = `Question ${index + 1}/${arr.length}`;
     
@@ -42,9 +52,9 @@ function handleProgress(arr, index) {
  * @returns 
  */
 function displayQuestion(arr, index) {
-    let currentQuestion = document.querySelector("h1");
+    let currentQuestion = document.querySelector(".mainQuestion");
     //boucle sur l'array des question afin d'insérer le texte de la question actuelle dans le h1
-    if(currentQuestionIndex <= 19) {
+    if(currentQuestionIndex <= arr.length - 1) {
         for(let i = 0; i < arr.length; i++) {
             currentQuestion.innerText = arr[index].question.text;
             return arr[index];
@@ -69,14 +79,21 @@ function randomAnswers(arr) {
     return arr;
 }
 
+function displayImage(obj, index) {
+    console.log(obj);
+    if(index <= 9) {
+        image.src = obj.question.img;
+    }
+}
+
 /**
  * 
  * @param {*} obj L'object qui contient la question actuelle et ses réponses;
  */
 function displayAnswers(obj) {
-    if(currentQuestionIndex <= 19) {
+    if(currentQuestionIndex <= 9) {
         currentAnwsers = obj.answers;
-    }
+}
 
     let randomizedAnswers = randomAnswers(currentAnwsers);
 
@@ -147,7 +164,7 @@ function handleAnswerClick() {
                 }
             }
 
-            if(currentQuestionIndex === 19) {
+            if(currentQuestionIndex === 9) {
                 nextBtn.innerText = `Resultat`;
             }
 
@@ -156,10 +173,34 @@ function handleAnswerClick() {
     })
 }
 
-function showResult(data, counter) {
+function showResult(data, count) {
+    let score = document.querySelector('.final-score');
+    let msg = document.querySelector('.final-msg');
+
+    console.log(msg, count)
+
     stylesheet.href = "./style/result.css";
     resultContainer.style.display = "block";
     quizContainer.style.display = "none";
+
+    score.innerText = `${count}/${data.length}`;
+
+    if(count < 4) {
+        msg.innerHTML = `Un moldu qui participe à un quiz de sorcier ?  <br />
+            Merci d’avoir participé à ce quiz.
+            <br />
+            Oubliettes!`;
+    } else if (count >= 4 && count < 7) {
+        msg.innerHTML = `Bravo, tu as suffisamment de connaissances en magie pour identifier des détraqueurs mais tu es dépourvu(e) de pouvoir  car tu es un cracmol.<br>
+            Merci d’avoir participé à ce quiz.
+            `;
+    } else {
+        msg.innerHTML = `Félicitations, tu es un véritable sorcier !<br>
+            L’univers Harry Potter ne semble pas avoir de secrets pour toi.
+            Vérifie tes courriers, ta lettre d’admission ne saurait tarder.<br>
+            Merci d’avoir participé à ce quiz.  
+            `;
+    }
 }
 
 playBtn.addEventListener("click", () => {
@@ -170,8 +211,9 @@ playBtn.addEventListener("click", () => {
 
 nextBtn.addEventListener('click', (e) => {
     currentQuestionIndex++;
-    handleProgress(db, currentQuestionIndex);
-    displayAnswers(displayQuestion(db, currentQuestionIndex));
+    handleProgress(limitQuestion(db), currentQuestionIndex);
+    displayImage(displayQuestion(limitQuestion(db), currentQuestionIndex), currentQuestionIndex);
+    displayAnswers(displayQuestion(limitQuestion(db), currentQuestionIndex));
 
     answersBtn.forEach(btn => {
         removeDisable(btn);
@@ -182,7 +224,7 @@ nextBtn.addEventListener('click', (e) => {
     disableBtn(nextBtn);
 
     if(e.currentTarget.innerText.toUpperCase() === "RESULTAT") {
-        showResult(db, correctAnswersCount);
+        showResult(limitQuestion(db), correctAnswersCount);
     }
 
 });

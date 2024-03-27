@@ -2,8 +2,8 @@ export let db = [
     {
         question: {
             id: 1,
-            type: "images",
-            text: "Comment s'appellent les meilleurs amis de Harry ?"
+            text: "Comment s'appellent les meilleurs amis de Harry ?",
+            img: "../assets/Images/question1.webp"
         }, 
         answers: [
             {text: "Hermione et Ron", "result": true},
@@ -15,8 +15,8 @@ export let db = [
     {
         question: {
             id: 2,
-            type: "text",
-            text: "Quel âge a Harry Potter à son arrivée à Poudlard?"
+            text: "Quel âge a Harry Potter à son arrivée à Poudlard?",
+            img: "../assets/Images/question2.jpg"
         }, 
         answers: [
             {text: "11 ans", "result": true},
@@ -28,7 +28,6 @@ export let db = [
     {
         question: {
             id: 3,
-            type: "text/img",
             text: "Combien y a-t-il d'horcruxes ?",
             img: "../assets/Images/question3.jpg"
         }, 
@@ -42,8 +41,8 @@ export let db = [
     {
         question: {
             id: 4,
-            type: "text/img",
-            text: "Comment s'appelle l'araignée de Hagid?"
+            text: "Comment s'appelle l'araignée de Hagid?",
+            img: "../assets/Images/question4.jpg"
         }, 
         answers: [
             {text: "Aragog", "result": true},
@@ -55,8 +54,8 @@ export let db = [
     {
         question: {
             id: 5,
-            type: "text",
-            text: "Quel est le nom de Hagid?"
+            text: "Quel est le nom de Hagid?",
+            img: "../assets/Images/question5.jpg"
         }, 
         answers: [
             {text: "Rubeus", "result": true},
@@ -68,8 +67,8 @@ export let db = [
     {
         question: {
             id: 6,
-            type: "text/img",
-            text: "Quel sortilège le professeur McGonagall avoue-t-elle avoir toujours eu envie d’essayer ?"
+            text: "Quel sortilège le professeur McGonagall avoue-t-elle avoir toujours eu envie d’essayer ?",
+            img: "../assets/Images/question6.jpg"
         }, 
         answers: [
             {text: "Piertotum Locomotor", "result": true},
@@ -81,8 +80,8 @@ export let db = [
     {
         question: {
             id: 7,
-            type: "text",
-            text: "Quel sort permet de crocheter une serrure ?"
+            text: "Quel sort permet de crocheter une serrure ?",
+            img: "../assets/Images/question7.gif"
         }, 
         answers: [
             {text: "Alohomora", "result": true},
@@ -94,8 +93,8 @@ export let db = [
     {
         question: {
             id: 8,
-            type: "text/img",
-            text: "Qu'est-ce que Bellatrix écrit sur le bras de Hermione ?"
+            text: "Qu'est-ce que Bellatrix écrit sur le bras de Hermione ?",
+            img: "../assets/Images/question8.gif"
         }, 
         answers: [
             {text: "Sang-de-bourbe", "result": true},
@@ -107,8 +106,8 @@ export let db = [
     {
         question: {
             id: 9,
-            type: "text",
-            text: "Quel sortilège Hermione utilise-t-elle contre Drago dans la Salle sur Demande ?"
+            text: "Quel sortilège Hermione utilise-t-elle contre Drago dans la Salle sur Demande ?",
+            img: "../assets/Images/question9.webp"
         }, 
         answers: [
             {text: "Expelliarmus", "result": true},
@@ -120,8 +119,8 @@ export let db = [
     {
         question: {
             id: 10,
-            type: "text/img",
-            text: "Dans quelle ville retrouve-t-on tante Marge toute gonflée ?"
+            text: "Dans quelle ville retrouve-t-on tante Marge toute gonflée ?",
+            img: "../assets/Images/question10.gif"
         }, 
         answers: [
             {text: "Sheffield", "result": true},
@@ -133,8 +132,8 @@ export let db = [
     {
         question: {
             id: 11,
-            type: "text",
-            text: "Qu'est-ce que les B.U.S.E ?"
+            text: "Qu'est-ce que les B.U.S.E ?",
+            img: "../assets/Images/question11.jpg"
         }, 
         answers: [
             {text: "Brevet Universel de Sorcellerie Elémentaire", "result": true},
@@ -146,8 +145,8 @@ export let db = [
     {
         question: {
             id: 12,
-            type: "text",
-            text: "Qu'obtient-on en ajoutant de la racine d'asphodèle en poudre à une infusion d'armoise ?"
+            text: "Qu'obtient-on en ajoutant de la racine d'asphodèle en poudre à une infusion d'armoise ?",
+            img: "../assets/Images/question12.jpg"
         }, 
         answers: [
             {text: "La goutte du mort vivant", "result": true},
@@ -159,8 +158,8 @@ export let db = [
     {
         question: {
             id: 13,
-            type: "text/img",
-            text: "Quelle est la créature magique que les élèves de première année ont rencontré lors du cours qui s’est déroulé près du lac du Parc de Poudlard ?"
+            text: "Quelle est la créature magique que les élèves de première année ont rencontré lors du cours qui s’est déroulé près du lac du Parc de Poudlard ?",
+            img: "../assets/Images/question13.webp"
         }, 
         answers: [
             {text: "Douze hippogriffes", "result": true},
@@ -172,8 +171,8 @@ export let db = [
     {
         question: {
             id: 14,
-            type: "images",
-            text: "Quel est le patronus de Severus ?"
+            text: "Quel est le patronus de Severus ?",
+            img: "../assets/Images/question14.webp"
         }, 
         answers: [
             {text: "Une biche", "result": true},
@@ -185,8 +184,8 @@ export let db = [
     {
         question: {
             id: 15,
-            type: "text/img",
-            text: "Comment s'appelle le père de Luna Lovegood ?"
+            text: "Comment s'appelle le père de Luna Lovegood ?",
+            img: "../assets/Images/question15.webp"
         }, 
         answers: [
             {text: "Xenophilius", "result": true},
@@ -198,8 +197,8 @@ export let db = [
     {
         question: {
             id: 16,
-            type: "text/img",
-            text: "Comment s'appelle le père de Luna Lovegood ?"
+            text: "Comment s'appelle le père de Luna Lovegood ?",
+            img: "../assets/Images/question16.png"
         }, 
         answers: [
             {text: "Ginny", "result": true},
@@ -211,8 +210,8 @@ export let db = [
     {
         question: {
             id: 17,
-            type: "text",
-            text: "Il faut du courage pour affronter ses ennemis mais il en faut encore plus pour affronter ses..."
+            text: "Il faut du courage pour affronter ses ennemis mais il en faut encore plus pour affronter ses...",
+            img: "../assets/Images/question17.jpg"
         }, 
         answers: [
             {text: "amis", "result": true},
@@ -224,8 +223,8 @@ export let db = [
     {
         question: {
             id: 18,
-            type: "text",
-            text: "De quoi famille Durley a-t-elle le plus peur ?"
+            text: "De quoi famille Durley a-t-elle le plus peur ?",
+            img: "../assets/Images/question18.webp"
         }, 
         answers: [
             {text: "De tout ce qui peut les faire paraître étranges", "result": true},
@@ -237,8 +236,8 @@ export let db = [
     {
         question: {
             id: 19,
-            type: "text",
-            text: "De quoi famille Durley a-t-elle le plus peur ?"
+            text: "De quoi famille Durley a-t-elle le plus peur ?",
+            img: "../assets/Images/question19.webp"
         }, 
         answers: [
             {text: "renvoyés!", "result": true},
@@ -250,8 +249,8 @@ export let db = [
     {
         question: {
             id:20,
-            type: "text",
-            text: "Quel est le deuxième prénom de Harry Potter ?"
+            text: "Quel est le deuxième prénom de Harry Potter ?",
+            img: "../assets/Images/question.jpg"
         }, 
         answers: [
             {text: "James", "result": true},
