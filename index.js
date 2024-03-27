@@ -2,14 +2,19 @@
 
 import { db } from './db/db.js';
 
+// let body = document.querySelector('body');
+let stylesheet = document.querySelector('link');
+let homeContainer = document.querySelector('.container-home');
+let quizContainer = document.querySelector('.container-quiz');
+let resultContainer = document.querySelector('.container-score');
+let playBtn = document.querySelector(".playButton");
 let answersBtn = document.querySelectorAll('.answer');
 let nextBtn = document.querySelector('.next');
-let body = document.querySelector('body');
-let stylesheet = document.querySelector('link');
 
 let currentAnwsers;
-let currentQuestionIndex = 0;
-let correctAnswersCount = 17;
+let currentQuestionIndex = 19;
+let correctAnswersCount = 19;
+
 
 function initQuiz() {
     handleProgress(db, currentQuestionIndex);
@@ -17,6 +22,8 @@ function initQuiz() {
     displayAnswers(displayQuestion(db, currentQuestionIndex));
     handleAnswerClick(currentAnwsers);
     disableBtn(nextBtn);
+    stylesheet.href = "./style/quiz.css";
+    homeContainer.style.display = "none";
 }
 
 function handleProgress(arr, index) {
@@ -31,12 +38,14 @@ function handleProgress(arr, index) {
 
 function handleLayout(obj) {
     let image = document.querySelector(".img");
-    console.log(obj.question.type)
-    if(obj.question.type === "images" || obj.question.type === "text") {
-        image.style.display = "none";
-    } else {
-        image.style.display = "block";
-        image.style.background = `url(${obj.question.img}) center/cover`
+    
+    if(currentQuestionIndex <= 19) {
+        if(obj.question.type === "images" || obj.question.type === "text") {
+            image.style.display = "none";
+        } else {
+            image.style.display = "block";
+            image.style.background = `url(${obj.question.img}) center/cover`
+        }
     }
 }
 
@@ -79,7 +88,9 @@ function randomAnswers(arr) {
  * @param {*} obj L'object qui contient la question actuelle et ses réponses;
  */
 function displayAnswers(obj) {
-    currentAnwsers = obj.answers;
+    if(currentQuestionIndex <= 19) {
+        currentAnwsers = obj.answers;
+    }
 
     let randomizedAnswers = randomAnswers(currentAnwsers);
 
@@ -160,25 +171,16 @@ function handleAnswerClick() {
 }
 
 function showResult(data, counter) {
-    stylesheet.href = "./style/result.css"
-    body.innerHTML = `<div class="container-score">
-    <div>
-        <h1>Ton score</h1>
-        <h2>${counter}/${data.length}</h2>
-        <p>
-            Bravo, tu es un véritable sorcier ! <br />
-            L'univers de Harry Potter ne semble pas avoir de secrets pour toi.
-            <br />
-            Vérifie ton courrier, ta lettre d'admission ne saurait tarder.
-        </p>
-        <img
-            src="./assets/Images/result.gif"
-            alt="10 points pour gryffondor! Public en joie "
-        />
-        </div>
-        <a class="button" href="./index.html">Menu</a>
-    </div>`
+    stylesheet.href = "./style/result.css";
+    resultContainer.style.display = "block";
+    quizContainer.style.display = "none";
 }
+
+playBtn.addEventListener("click", () => {
+    initQuiz();
+    homeContainer.style.display = "none";
+    quizContainer.style.display ="block";
+});
 
 nextBtn.addEventListener('click', (e) => {
     currentQuestionIndex++;
@@ -199,5 +201,3 @@ nextBtn.addEventListener('click', (e) => {
     }
 
 });
-
-initQuiz();

@@ -10,10 +10,6 @@ export let db = [
             {text: "Crabbe et Goyle", "result": false},
             {text: "Drago et Severus", "result": false},
             {text: "Luna et Neville", "result": false}
-            // {img: "../assets/Images/question1-hermione-ron.jpg", "result": true},
-            // {img: "../assets/Images/question1-drago-severus.jpg", "result": false},
-            // {img: "../assets/Images/question1-CrabbandGoyle.jpg", "result": false},
-            // {img: "../assets/Images/question1-neville-luna.webp", "result": false}
         ]
     },
     {
