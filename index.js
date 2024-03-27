@@ -13,7 +13,7 @@ let answersBtn = document.querySelectorAll(".answer");
 let nextBtn = document.querySelector(".next");
 
 let currentAnwsers;
-let currentQuestionIndex = 9;
+let currentQuestionIndex = 0;
 let correctAnswersCount = 0;
 
 function initQuiz() {
@@ -187,7 +187,7 @@ function showResult(data, count) {
   console.log(msg, count);
 
   stylesheet.href = "./style/result.css";
-  resultContainer.style.display = "block";
+  resultContainer.style.display = "flex";
   quizContainer.style.display = "none";
 
   score.innerText = `${count}/${data.length}`;
