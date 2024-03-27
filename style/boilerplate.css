@@ -32,7 +32,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--dark-brackground);
+    background: url(../assets/Images/bg.jpg) center/cover;
     height: 100dvh;
     width: 100dvw;
     cursor: url(../assets/Images/Souris.png), pointer;
