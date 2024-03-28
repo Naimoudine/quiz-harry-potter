@@ -1,8 +1,5 @@
-// revoir l'ui et le faire passer dans le w3c
-
 import { db } from "./db/db.js";
 
-// let body = document.querySelector('body');
 let stylesheet = document.querySelector("link");
 let homeContainer = document.querySelector(".container-home");
 let quizContainer = document.querySelector(".container-quiz");
@@ -44,14 +41,23 @@ function randomize(arr) {
     return arr;
   }
 
-function limitQuestion(db) {
+  /**
+   * 
+   * @param {Array} arr L'array qui contient toutes les questions
+   */
+function limitQuestion(arr) {
   let questions = [];;
-  for (let i = db.length - 1; i > 9; i--) {
-    questions.push(db[i]);
+  for (let i = arr.length - 1; i > 9; i--) {
+    questions.push(arr[i]);
   }
   limitedQuestions = questions;
 }
 
+/**
+ * 
+ * @param {Array} arr L'arret qui va contenir les questions que l'on va utiliser
+ * @param {Number} index L'index de la question actuelle
+ */
 function handleProgress(arr, index) {
   if (index <= arr.length - 1) {
     let progress = document.querySelector("header p");
@@ -64,22 +70,25 @@ function handleProgress(arr, index) {
 
 /**
  *
- * @param {Array} db L'array qui contient toutes nos questions
+ * @param {Array} arr L'array qui contient toutes nos questions
  * @param {Number} index L'index de la question actuelle
- * @returns
  */
-function displayQuestion(db, index) {
+function displayQuestion(arr, index) {
   let questionEl = document.querySelector(".mainQuestion");
   //boucle sur l'array des question afin d'insérer le texte de la question actuelle dans le h1
-  if (index <= db.length - 1) {
-    for (let i = 0; i < db.length; i++) {
-      questionEl.innerText = db[index].question.text;
-      currentQuestion = db[index];
+  if (index <= arr.length - 1) {
+    for (let i = 0; i < arr.length; i++) {
+      questionEl.innerText = arr[index].question.text;
+      currentQuestion = arr[index];
     }
   }
 }
 
-
+/**
+ * 
+ * @param {*} obj L'objet qui contient notre question actuelle
+ * @param {*} index L'index de la question actuelle
+ */
 function displayImage(obj, index) {
   if (index <= 9) {
     image.style.background = `url("${obj.question.img}") center/cover no-repeat`;
@@ -173,7 +182,7 @@ function handleAnswerClick() {
   });
 }
 
-function showResult(data, count) {
+function showResult(arr, count) {
   let score = document.querySelector(".final-score");
   let msg = document.querySelector(".final-msg");
   let img = document.querySelector(".final-img");
@@ -185,7 +194,7 @@ function showResult(data, count) {
   resultContainer.style.display = "flex";
   quizContainer.style.display = "none";
 
-  score.innerText = `${count}/${data.length}`;
+  score.innerText = `${count}/${arr.length}`;
 
   if (count < 4) {
     msg.innerHTML = `Un moldu qui participe à un quiz de sorcier ?  <br />
