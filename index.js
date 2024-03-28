@@ -169,7 +169,6 @@ function handleAnswerClick() {
           btn.classList.add("correct");
           getSiblings(btn).forEach((btn) => disableBtn(btn));
           correctAnswersCount++;
-          console.log(correctAnswersCount);
         }
       }
 
@@ -187,8 +186,6 @@ function showResult(arr, count) {
   let msg = document.querySelector(".final-msg");
   let img = document.querySelector(".final-img");
   let btn = document.querySelector(".resultBtn");
-
-  console.log(img);
 
   stylesheet.href = "./style/result.css";
   resultContainer.style.display = "flex";
